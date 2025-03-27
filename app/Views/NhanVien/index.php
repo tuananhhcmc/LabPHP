@@ -89,13 +89,14 @@
         /* Button Styles */
         .button {
             display: inline-block;
-            padding: 8px 12px;
-            margin: 3px;
+            padding: 10px 16px; /* Tăng padding */
+            margin: 5px; /* Tăng margin */
             border: 1px solid #007bff;
             text-decoration: none;
             color: #007bff;
-            border-radius: 5px;
+            border-radius: 8px; /* Tăng border-radius */
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            font-size: 16px; /* Tăng font-size */
         }
 
         .button:hover {
@@ -106,17 +107,41 @@
 
         /* Logout Button */
         .logout-button {
-            display: block; /* Hiển thị trên một dòng riêng */
-            text-align: center; /* Căn giữa nút */
-            margin-top: 20px; /* Tạo khoảng cách phía trên */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Greeting Message */
+        .greeting-message {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        /* Add Employee Button */
+        .add-employee-button {
+            text-align: left; /* Căn trái nút thêm nhân viên */
+            margin-bottom: 10px; /* Thêm khoảng cách bên dưới nút */
         }
     </style>
 </head>
 <body>
     <h1>THÔNG TIN NHÂN VIÊN</h1>
-    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-        <a href="index.php?action=create" class="button">Thêm nhân viên</a>
-    <?php endif; ?>
+
+    <div class="greeting-message">
+        <?php if (isset($_SESSION['username'])): ?>
+            Hello, <?php echo $_SESSION['username']; ?>!
+        <?php else: ?>
+            Hello!
+        <?php endif; ?>
+    </div>
+
+    <div class="add-employee-button">
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+            <a href="index.php?action=create" class="button">Thêm nhân viên</a>
+        <?php endif; ?>
+    </div>
     <table>
         <thead>
             <tr>
@@ -170,7 +195,6 @@
 
     <div class="logout-button">
         <a href="logout.php" class="button">Đăng xuất</a>
-        
     </div>
 </body>
 </html>
