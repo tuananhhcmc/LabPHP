@@ -18,7 +18,7 @@ switch ($action) {
         $nhanVienController->edit();
         break;
     case 'update':
-        $nhanVienController->update(); // Gọi action update
+        $nhanVienController->update(); 
         break;
     case 'delete':
         $nhanVienController->delete();

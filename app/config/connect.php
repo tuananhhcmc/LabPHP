@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // Thay đổi
-$password = ""; // Thay đổi
+$username = "root";
+$password = ""; 
 $dbname = "QL_NhanSu";
 
 // Tạo kết nối

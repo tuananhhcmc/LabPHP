@@ -4,7 +4,6 @@
     <title>Sửa nhân viên</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
     <style>
-        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;

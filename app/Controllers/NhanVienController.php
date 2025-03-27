@@ -11,7 +11,6 @@ class NhanVienController {
     }
 
     public function index() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         $limit = 5;
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $start = ($page - 1) * $limit;
@@ -24,7 +23,6 @@ class NhanVienController {
     }
 
     public function create() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
             include 'app/Views/nhanvien/create.php';
         } else {
@@ -34,7 +32,6 @@ class NhanVienController {
     
 
     public function store() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         if ($_SESSION['role'] == 'admin') {
             $Ma_NV = $_POST['Ma_NV'];
             $Ten_NV = $_POST['Ten_NV'];
@@ -46,7 +43,7 @@ class NhanVienController {
             if ($this->nhanvienModel->create($Ma_NV, $Ten_NV, $Phai, $Noi_Sinh, $Ma_Phong, $Luong)) {
                 header("Location: index.php");
             } else {
-                echo "Có lỗi xảy ra khi thêm nhân viên. Xem chi tiết bên trên."; // Thông báo chung
+                echo "Có lỗi xảy ra khi thêm nhân viên. Xem chi tiết bên trên."; 
             }
         } else {
             echo "Bạn không có quyền thực hiện thao tác này.";
@@ -55,7 +52,6 @@ class NhanVienController {
     
 
     public function edit() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         if ($_SESSION['role'] == 'admin') {
             $Ma_NV = $_GET['Ma_NV'];
             $nhanvien = $this->nhanvienModel->getByMaNV($Ma_NV);
@@ -66,7 +62,6 @@ class NhanVienController {
     }
 
     public function update() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         if ($_SESSION['role'] == 'admin') {
             $Ma_NV = $_POST['Ma_NV'];
             $Ten_NV = $_POST['Ten_NV'];
@@ -86,7 +81,6 @@ class NhanVienController {
     }
 
     public function delete() {
-        // KHÔNG CÓ session_start() ở ĐÂY
         if ($_SESSION['role'] == 'admin') {
             $Ma_NV = $_GET['Ma_NV'];
             if ($this->nhanvienModel->delete($Ma_NV)) {

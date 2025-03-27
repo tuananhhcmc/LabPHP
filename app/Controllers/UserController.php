@@ -26,15 +26,15 @@ class UserController {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
-                header("Location: ../qlns"); // Chuyển hướng về trang chủ
+                header("Location: ../qlns"); 
                 exit();
             } else {
                 $error = "Mật khẩu không đúng.";
-                include 'app/Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
+                include 'app/Views/user/login_form.php'; 
             }
         } else {
             $error = "Tên đăng nhập không tồn tại.";
-            include 'app/Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
+            include 'app/Views/user/login_form.php'; 
         }
     }
 

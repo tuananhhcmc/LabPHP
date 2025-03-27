@@ -1,5 +1,5 @@
 <?php
-$password = '1234'; // Thay bằng password bạn muốn
+$password = '1234';
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-echo $hashed_password; // In ra password đã hash
+echo $hashed_password; 
 ?>

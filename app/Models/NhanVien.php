@@ -36,7 +36,7 @@ class NhanVien {
         if ($this->conn->query($sql) === TRUE) {
             return true;
         } else {
-            echo "Lỗi: " . $sql . "<br>" . $this->conn->error; // Hiển thị thông báo lỗi
+            echo "Lỗi: " . $sql . "<br>" . $this->conn->error;
             return false;
         }
     }
