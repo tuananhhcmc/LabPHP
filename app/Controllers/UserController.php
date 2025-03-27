@@ -15,29 +15,34 @@ class UserController {
     }
 
     public function processLogin() {
-        session_start();
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
 
-        $user = $this->userModel->getUserByUsername($username);
+            $sql = "SELECT id, username, password, role FROM users WHERE username = '$username'";
+            $result = $this->conn->query($sql);
 
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['role'] = $user['role'];
-                header("Location: ../qlns"); 
-                exit();
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                // Loại bỏ password_verify và so sánh trực tiếp
+                if ($password == $row["password"]) {
+                    // Thiết lập session
+                    session_start();
+                    $_SESSION["user_id"] = $row["id"];
+                    $_SESSION["username"] = $row["username"];
+                    $_SESSION["role"] = $row["role"];
+
+                    // Chuyển hướng đến trang chính
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    return "Sai mật khẩu."; // Trả về thông báo lỗi
+                }
             } else {
-                $error = "Mật khẩu không đúng.";
-                include 'app/Views/user/login_form.php'; 
+                return "Tài khoản không tồn tại."; // Trả về thông báo lỗi
             }
-        } else {
-            $error = "Tên đăng nhập không tồn tại.";
-            include 'app/Views/user/login_form.php'; 
         }
     }
-
     public function logout() {
         session_start();
         session_destroy();
