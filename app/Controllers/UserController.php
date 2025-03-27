@@ -26,22 +26,22 @@ class UserController {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
-                header("Location: ../index.php"); // Chuyển hướng về trang chủ
+                header("Location: ../qlns"); // Chuyển hướng về trang chủ
                 exit();
             } else {
                 $error = "Mật khẩu không đúng.";
-                include '../Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
+                include 'app/Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
             }
         } else {
             $error = "Tên đăng nhập không tồn tại.";
-            include '../Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
+            include 'app/Views/user/login_form.php'; // Hiển thị lại form với thông báo lỗi
         }
     }
 
     public function logout() {
         session_start();
         session_destroy();
-        header("Location: ../login.php");
+        header("Location: login.php");
         exit();
     }
 }

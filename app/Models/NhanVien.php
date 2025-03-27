@@ -32,7 +32,13 @@ class NhanVien {
     public function create($Ma_NV, $Ten_NV, $Phai, $Noi_Sinh, $Ma_Phong, $Luong) {
         $sql = "INSERT INTO NHANVIEN (Ma_NV, Ten_NV, Phai, Noi_Sinh, Ma_Phong, Luong)
                 VALUES ('$Ma_NV', '$Ten_NV', '$Phai', '$Noi_Sinh', '$Ma_Phong', $Luong)";
-        return $this->conn->query($sql);
+
+        if ($this->conn->query($sql) === TRUE) {
+            return true;
+        } else {
+            echo "Lỗi: " . $sql . "<br>" . $this->conn->error; // Hiển thị thông báo lỗi
+            return false;
+        }
     }
 
     public function getByMaNV($Ma_NV) {

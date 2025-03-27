@@ -103,14 +103,19 @@
             color: white;
             border-color: #007bff;
         }
+
+        /* Logout Button */
+        .logout-button {
+            display: block; /* Hiển thị trên một dòng riêng */
+            text-align: center; /* Căn giữa nút */
+            margin-top: 20px; /* Tạo khoảng cách phía trên */
+        }
     </style>
 </head>
 <body>
     <h1>THÔNG TIN NHÂN VIÊN</h1>
-    <?php
-    session_start();
-    if ($_SESSION['role'] == 'admin'): ?>
-        <a href="Controllers/NhanVienController.php?action=create" class="button">Thêm nhân viên</a>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+        <a href="index.php?action=create" class="button">Thêm nhân viên</a>
     <?php endif; ?>
     <table>
         <thead>
@@ -121,7 +126,7 @@
                 <th>Nơi Sinh</th>
                 <th>Tên Phòng</th>
                 <th>Lương</th>
-                <?php if ($_SESSION['role'] == 'admin'): ?>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                     <th>Thao tác</th>
                 <?php endif; ?>
             </tr>
@@ -133,22 +138,22 @@
                         <td><?php echo $nhanvien["Ma_NV"]; ?></td>
                         <td><?php echo $nhanvien["Ten_NV"]; ?></td>
                         <td>
-                            <img src='../public/<?php echo ($nhanvien["Phai"] == "NU" ? "woman.jpg" : "man.jpg"); ?>'
+                            <img src='app/public/<?php echo ($nhanvien["Phai"] == "NU" ? "woman.jpg" : "man.jpg"); ?>'
                                  alt='<?php echo ($nhanvien["Phai"] == "NU" ? "Nữ" : "Nam"); ?>'>
                         </td>
                         <td><?php echo $nhanvien["Noi_Sinh"]; ?></td>
                         <td><?php echo $nhanvien["Ten_Phong"]; ?></td>
                         <td><?php echo number_format($nhanvien["Luong"]); ?></td>
-                        <?php if ($_SESSION['role'] == 'admin'): ?>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
                             <td>
-                                <a href="Controllers/NhanVienController.php?action=edit&Ma_NV=<?php echo $nhanvien["Ma_NV"]; ?>" class="button">Sửa</a>
-                                <a href="Controllers/NhanVienController.php?action=delete&Ma_NV=<?php echo $nhanvien["Ma_NV"]; ?>" class="button" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?')">Xóa</a>
+                                <a href="index.php?action=edit&Ma_NV=<?php echo $nhanvien["Ma_NV"]; ?>" class="button">Sửa</a>
+                                <a href="index.php?action=delete&Ma_NV=<?php echo $nhanvien["Ma_NV"]; ?>" class="button" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?')">Xóa</a>
                             </td>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan='<?php echo ($_SESSION['role'] == 'admin' ? 7 : 6); ?>'>Không có dữ liệu</td></tr>
+                <tr><td colspan='<?php echo (isset($_SESSION['role']) && $_SESSION['role'] == 'admin' ? 7 : 6); ?>'>Không có dữ liệu</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
@@ -162,6 +167,10 @@
             <?php endif; ?>
         <?php endfor; ?>
     </div>
-    <a href="logout.php">Đăng xuất</a>
+
+    <div class="logout-button">
+        <a href="logout.php" class="button">Đăng xuất</a>
+        
+    </div>
 </body>
 </html>
