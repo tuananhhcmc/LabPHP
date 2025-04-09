@@ -194,8 +194,8 @@
         <h4 class="text-center text-white mb-4">Quản lý Nhân sự</h4>
         <a href="index.php" class="active"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
         <a href="#"><i class="fas fa-users me-2"></i> Nhân viên</a>
-        <a href="#"><i class="fas fa-money-bill me-2"></i> Lương</a>
-        <a href="#"><i class="fas fa-chart-bar me-2"></i> Báo cáo</a>
+        <a href="salary.php"><i class="fas fa-money-bill me-2"></i> Lương</a>
+        <a href="reports.php"><i class="fas fa-chart-bar me-2"></i> Báo cáo</a>
         <a href="logout.php"><i class="fas fa-sign-out-alt me-2"></i> Đăng xuất</a>
     </div>
 
